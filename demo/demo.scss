@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+html {
+  position: relative;
+  font-size: 20px; /*由于chrome内核的浏览器最小标定字体为12px因此使用1rem=20px来换算布局大小*/
+  height: 100%;
+  * {
+    box-sizing: border-box; //全局使用盒模型
+  }
+}
