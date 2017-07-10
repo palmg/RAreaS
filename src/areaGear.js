@@ -52,25 +52,46 @@ class areaGear extends React.Component {
         this.areaHandle = this.areaHandle.bind(this)
     }
 
-    provinceHandle(self) {
-        this.data.province = self
-        const city = self.child || [{id: 'noneCity', name: ''}]
-        city && this.setState({
+    //type=['province'|'city'|'area']
+    buildData(self, type) {
+        let {province, city, area} = this.state
+        switch (type) {
+            case 'province':
+                city = self.child || [{id: 'noneCity', name: ''}]
+                area = city[0].child || [{id: 'noneArea', name: ''}]
+                this.data = {
+                    province: self,
+                    city: city[0],
+                    area: area[0]
+                }
+                break
+            case 'city':
+                area = self.child || [{id: 'noneArea', name: ''}]
+                this.data.city = self
+                this.data.area = area[0]
+                break
+            case 'area':
+                this.data.area = self
+                break
+
+        }
+        this.setState({
+            province: province,
             city: city,
-            area: city[0].child || [{id:'noneArea', name: ''}]
+            area: area
         })
+    }
+
+    provinceHandle(self) {
+        this.buildData(self, 'province')
     }
 
     cityHandle(self) {
-        this.data.city = self
-        const child = self.child || [{id: 'noneArea', name: ''}]
-        this.setState({
-            area: child
-        })
+        this.buildData(self, 'city')
     }
 
     areaHandle(self) {
-        this.data.area = self
+        this.buildData(self, 'area')
     }
 
     render() {
