@@ -1,10 +1,11 @@
 {
   "name": "rareas",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "area select input for mobile",
   "main": "index.js",
   "scripts": {
     "demo": "webpack-dev-server --progress --colors --inline --config ./demo/webpack",
+    "babel": "grunt && babel ./src/ -d ./lib/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,13 +31,15 @@
     "babel-preset-react": "^6.16.0",
     "classnames": "^2.2.5",
     "css-loader": "^0.26.0",
-    "precss": "^1.4.0",
     "node-sass": "^4.1.1",
     "postcss-loader": "^1.2.1",
+    "precss": "^1.4.0",
     "sass-loader": "^4.0.1",
     "style-loader": "^0.13.1"
   },
   "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
     "file-loader": "^0.10.1",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.24.1",

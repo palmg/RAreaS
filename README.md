@@ -55,3 +55,4 @@ $ npm rm node-sass
 $ cnpm install node-sass
 ```
 
+**本项目的默认地域数据来自LArea开源项目：https://github.com/xfhxbb/LArea。感谢他们的辛勤工作。**
