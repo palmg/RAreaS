@@ -1,6 +1,6 @@
 React实现的移动端区域选择工具。
 ## 安装
-`npm install RAreaS`
+`npm install rareas`
 ## 使用
 通过React组件的方式使用：
 ```JavaScript
