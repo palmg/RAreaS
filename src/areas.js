@@ -35,17 +35,24 @@ const cn = cnTool.bind(styles)
 class Areas extends React.Component {
     constructor(...props) {
         super(...props)
+        this.deepClone = this.deepClone.bind(this)
         this.submitHandle = this.submitHandle.bind(this)
     }
 
     submitHandle(e) {
         const { onCommit } = this.props
-        let { data, data: { province, city, area } } = this.gear
         if (onCommit) {
-            delete data.province.child
-            delete data.city.child
-            onCommit(data)
+            const address = this.deepClone(this.gear.data)
+            delete address.province.child
+            delete address.city.child
+            onCommit(address)
         }
+    }
+
+    deepClone(currobj) {
+        let newobj = {}
+        for (var i in currobj) newobj[i] = typeof currobj[i] === 'object' ? this.deepClone(currobj[i]) : currobj[i]
+        return newobj
     }
 
     render() {
