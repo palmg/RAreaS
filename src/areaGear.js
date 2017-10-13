@@ -34,9 +34,9 @@ class areaGear extends React.Component {
         super(...props)
         const provinceList = this.props.list,
             province = provinceList[0],
-            cityList = province.child || [{id: 'noneCity', name: ''}],
+            cityList = province.child || [{ id: 'noneCity', name: '' }],
             city = cityList[0],
-            areaList = city.child || [{id: 'noneArea', name: ''}]
+            areaList = city.child || [{ id: 'noneArea', name: '' }]
         this.state = {
             province: provinceList,
             city: cityList,
@@ -54,11 +54,11 @@ class areaGear extends React.Component {
 
     //type=['province'|'city'|'area']
     buildData(self, type) {
-        let {province, city, area} = this.state
+        let { province, city, area } = this.state
         switch (type) {
             case 'province':
-                city = self.child || [{id: 'noneCity', name: ''}]
-                area = city[0].child || [{id: 'noneArea', name: ''}]
+                city = self.child || [{ id: 'noneCity', name: '' }]
+                area = city[0].child || [{ id: 'noneArea', name: '' }]
                 this.data = {
                     province: self,
                     city: city[0],
@@ -66,7 +66,7 @@ class areaGear extends React.Component {
                 }
                 break
             case 'city':
-                area = self.child || [{id: 'noneArea', name: ''}]
+                area = self.child || [{ id: 'noneArea', name: '' }]
                 this.data.city = self
                 this.data.area = area[0]
                 break
@@ -95,17 +95,17 @@ class areaGear extends React.Component {
     }
 
     render() {
-        const {province, city, area} = this.state
+        const { province, city, area } = this.state
         return (
             <div className={cn("area_roll_mask")}>
                 <div className={cn("area_roll")}>
-                    <Select onSelect={this.provinceHandle} list={province}/>
-                    <Select onSelect={this.cityHandle} list={city}/>
-                    <Select onSelect={this.areaHandle} list={area}/>
+                    <Select onSelect={this.provinceHandle} list={province} />
+                    <Select onSelect={this.cityHandle} list={city} />
+                    <Select onSelect={this.areaHandle} list={area} />
                 </div>
             </div>
         )
     }
 }
 
-export default  areaGear
+export default areaGear
