@@ -1,6 +1,6 @@
 {
   "name": "rareas",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "area select input for mobile",
   "main": "index.js",
   "scripts": {

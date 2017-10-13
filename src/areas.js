@@ -39,8 +39,13 @@ class Areas extends React.Component {
     }
 
     submitHandle(e) {
-        const onCommit = this.props.onCommit
-        onCommit && onCommit(this.gear.data)
+        const { onCommit } = this.props
+        let { data, data: { province, city, area } } = this.gear
+        if (onCommit) {
+            delete data.province.child
+            delete data.city.child
+            onCommit(data, province.name + city.name + area.name)
+        }
     }
 
     render() {
@@ -50,7 +55,7 @@ class Areas extends React.Component {
                     <div className={cn("area_btn", "larea_cancel")} onClick={this.props.onCancel}>取消</div>
                     <div className={cn("area_btn", "larea_finish")} onClick={this.submitHandle}>确定</div>
                 </div>
-                <AreaGear ref={ref => this.gear = ref} list={areaData}/>
+                <AreaGear ref={ref => this.gear = ref} list={areaData} />
             </div>
         )
     }
