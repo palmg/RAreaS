@@ -38,9 +38,9 @@ class Select extends React.Component {
         this.touchEndHandle = this.touchEndHandle.bind(this)
     }
 
-    shouldComponentUpdate(nextProps, nextState){
+    shouldComponentUpdate(nextProps, nextState) {
         const modify = nextProps.list !== this.props.list
-        modify && (()=>{
+        modify && (() => {
             this.dom.style["top"] = '0rem'
             this.length = -nextProps.list.length || 0//传入下拉菜单长度
         })()
@@ -66,15 +66,16 @@ class Select extends React.Component {
     }
 
     touchEndHandle(e) {
-        const {dom, length, onSelect, props} = this, _this = this
+        const { dom, length, onSelect, props } = this, _this = this
         let moveTop = this.moveTop;
+        if (!moveTop) return;
         0 < moveTop ? (moveTop = 0) : length * 2 + 1 > moveTop && (moveTop = (length + 1) * 2)
         const item = Math.round(moveTop / 2)
         dom.style["top"] = `${item * 2}rem`
         props.onSelect && (
             this.timer = setTimeout(() => {
                 props.onSelect(props.list[Math.abs(item)])
-            }),200)
+            }), 200)
     }
 
     render() {
@@ -82,13 +83,13 @@ class Select extends React.Component {
         return (
             <div className={cn("gear-box")}>
                 <div className={cn("gear")}
-                     onTouchStart={this.touchStartHandle}
-                     onTouchMove={this.touchMoveHandle}
-                     onTouchEnd={this.touchEndHandle}
-                     ref={(dom) => this.dom = dom}>
+                    onTouchStart={this.touchStartHandle}
+                    onTouchMove={this.touchMoveHandle}
+                    onTouchEnd={this.touchEndHandle}
+                    ref={(dom) => this.dom = dom}>
                     {list.map(i => <div key={i.id} className={cn('tooth')}>{i.name}</div>)}
                 </div>
-                <div className={cn('area_grid')}/>
+                <div className={cn('area_grid')} />
             </div>
         )
     }
